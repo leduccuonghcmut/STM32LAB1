@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "Exercise2.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -47,6 +47,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -83,18 +84,86 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
+	//int led = 5;
+	//int cnt = 10;
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
+//  while (1)
+//  {
+//    /* USER CODE END WHILE */
+//	  switch(led){
+//	  	  case 5:
+//	  		  red();
+//	  		  if(cnt <= 5){
+//	  			  led = 2;
+//	  			  cnt = 2;
+//	  		  }
+//	  		  break;
+//	  	  case 2:
+//	  		  yellow();
+//	  		  if(cnt <= 0){
+//	  			  led = 3;
+//	  			  cnt = 3;
+//	  		  }
+//	  		  break;
+//	  	  case 3:
+//	  		  green();
+//	  		  if(cnt <= 0){
+//	  			  cnt = 5;
+//	  			  led = 5;
+//	  		  }
+//	  		  break;
+//	  }
+//	  HAL_Delay(1000);
+//	  cnt--;
+//    /* USER CODE BEGIN 3 */
+//  }
+	int led = 5;  // Bắt đầu với đèn đỏ
+	int cnt = 5;  // Thiết lập số giây đếm ngược ban đầu cho đèn đỏ
 
-    /* USER CODE BEGIN 3 */
-  }
+	/* USER CODE BEGIN WHILE */
+	while (1)
+	{
+	    // Giảm biến đếm mỗi 1 giây
+	    cnt--;
+
+	    // Kiểm tra trạng thái của từng đèn
+	    switch (led) {
+	        case 5:  // Đèn đỏ
+	            red();
+	            if (cnt == 0) {  // Khi thời gian đèn đỏ hết
+	                led = 2;      // Chuyển sang đèn vàng
+	                cnt = 2;      // Thiết lập thời gian cho đèn vàng (2 giây)
+	            }
+	            break;
+
+	        case 2:  // Đèn vàng
+	            yellow();
+	            if (cnt == 0) {  // Khi thời gian đèn vàng hết
+	                led = 3;      // Chuyển sang đèn xanh
+	                cnt = 3;      // Thiết lập thời gian cho đèn xanh (3 giây)
+	            }
+	            break;
+
+	        case 3:  // Đèn xanh
+	            green();
+	            if (cnt == 0) {  // Khi thời gian đèn xanh hết
+	                led = 5;      // Quay lại đèn đỏ
+	                cnt = 5;      // Thiết lập thời gian cho đèn đỏ (5 giây)
+	            }
+	            break;
+	    }
+
+	    // Dừng 1 giây mỗi lần lặp
+	    HAL_Delay(1000);
+	}
+
+
   /* USER CODE END 3 */
 }
 
@@ -131,6 +200,30 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : LED_RED_Pin LED_YELLOW_Pin LED_GREEN_Pin */
+  GPIO_InitStruct.Pin = LED_RED_Pin|LED_YELLOW_Pin|LED_GREEN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 }
 
 /* USER CODE BEGIN 4 */
