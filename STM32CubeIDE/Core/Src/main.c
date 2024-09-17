@@ -95,10 +95,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  clock(counter);
-	  counter++;
+	  clock(counter++);
 	  if (counter >= 12) counter = 0;
 	  HAL_Delay(1000);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
