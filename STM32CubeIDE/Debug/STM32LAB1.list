@@ -928,8 +928,8 @@ void yellow_2(void){
  80007e4:	40010800 	.word	0x40010800
 
 080007e8 <update_lane_1>:
-#define GREEN_TIME  3   // Thời gian đèn xanh (giây)
-#define YELLOW_TIME 2   // Thời gian đèn vàng (giây)
+#define GREEN_TIME  3
+#define YELLOW_TIME 2
 
 int counter = 0;  // Biến đếm thời gian chung
 
@@ -1088,25 +1088,25 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
  80008cc:	f000 f84c 	bl	8000968 <MX_GPIO_Init>
-//	  } else if(counter < 5){
-//		  yellow_2();
-//		  counter++;
-//	  }
-//
-      update_lane_1();  // Cập nhật trạng thái lane 1
+  //int counter = 0;
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+      update_lane_1();
  80008d0:	f7ff ff8a 	bl	80007e8 <update_lane_1>
-      update_lane_2();  // Cập nhật trạng thái lane 2
+      update_lane_2();
  80008d4:	f7ff ffbe 	bl	8000854 <update_lane_2>
-      HAL_Delay(1000);  // Delay 1 giây chung cho cả hai lane
+      HAL_Delay(1000);
  80008d8:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  80008dc:	f000 f986 	bl	8000bec <HAL_Delay>
-      counter++;  // Tăng biến đếm thời gian
+      counter++;  //
  80008e0:	4b02      	ldr	r3, [pc, #8]	; (80008ec <main+0x2c>)
  80008e2:	681b      	ldr	r3, [r3, #0]
  80008e4:	3301      	adds	r3, #1
  80008e6:	4a01      	ldr	r2, [pc, #4]	; (80008ec <main+0x2c>)
  80008e8:	6013      	str	r3, [r2, #0]
-      update_lane_1();  // Cập nhật trạng thái lane 1
+      update_lane_1();
  80008ea:	e7f1      	b.n	80008d0 <main+0x10>
  80008ec:	20000028 	.word	0x20000028
 

@@ -62,9 +62,9 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-#define RED_TIME    5   // Thời gian đèn đỏ (giây)
-#define GREEN_TIME  3   // Thời gian đèn xanh (giây)
-#define YELLOW_TIME 2   // Thời gian đèn vàng (giây)
+#define RED_TIME    5
+#define GREEN_TIME  3
+#define YELLOW_TIME 2
 
 int counter = 0;  // Biến đếm thời gian chung
 
@@ -134,19 +134,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-//	  if (counter < 3){
-//		  red_1();
-//		  green_2();
-//		  counter++;
-//	  } else if(counter < 5){
-//		  yellow_2();
-//		  counter++;
-//	  }
-//
-      update_lane_1();  // Cập nhật trạng thái lane 1
-      update_lane_2();  // Cập nhật trạng thái lane 2
-      HAL_Delay(1000);  // Delay 1 giây chung cho cả hai lane
-      counter++;  // Tăng biến đếm thời gian
+
+      update_lane_1();
+      update_lane_2();
+      HAL_Delay(1000);
+      counter++;  //
 
     /* USER CODE BEGIN 3 */
   }
