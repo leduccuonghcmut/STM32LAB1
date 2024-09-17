@@ -96,9 +96,10 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  clock(counter);
+	  HAL_Delay(1000);
 	  counter++;
 	  if(counter > 11) counter = 0;
-	  HAL_Delay(1000);
+
 
     /* USER CODE BEGIN 3 */
   }
