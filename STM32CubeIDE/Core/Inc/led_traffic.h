@@ -2,6 +2,7 @@
 #ifndef INC_LED_1_H_
 #define INC_LED_1_H_
 void led_1(int num){
+	//tat het den o ban dau
 		HAL_GPIO_WritePin(LED_a_GPIO_Port, LED_a_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(LED_b_GPIO_Port, LED_b_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(LED_c_GPIO_Port, LED_c_Pin, GPIO_PIN_SET);
