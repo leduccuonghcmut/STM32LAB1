@@ -66,21 +66,21 @@ static void MX_GPIO_Init(void);
 #define GREEN_TIME  3
 #define YELLOW_TIME 2
 
-int counter = 0;  // Biến đếm thời gian chung
+int counter = 0;
 
 void update_lane_1() {
-    int cycle_time = RED_TIME + GREEN_TIME + YELLOW_TIME;
-    int elapsed = counter % cycle_time;
+    int cycle_time = RED_TIME + GREEN_TIME + YELLOW_TIME; // tong chu ki cua 1 traffic light
+    int elapsed = counter % cycle_time; // bien thoi gian troi qua trong 1 chu ki
 
     if (elapsed < RED_TIME) {
         red_1();
-        led_1(RED_TIME - elapsed);
+        led_1(RED_TIME - elapsed); // thoi gian den do con lai
     } else if (elapsed < RED_TIME + GREEN_TIME) {
         green_1();
-        led_1(GREEN_TIME - (elapsed - RED_TIME));
+        led_1(GREEN_TIME - (elapsed - RED_TIME)); // thoi gian den xanh con lai
     } else {
         yellow_1();
-        led_1(YELLOW_TIME - (elapsed - RED_TIME - GREEN_TIME));
+        led_1(YELLOW_TIME - (elapsed - RED_TIME - GREEN_TIME)); // thoi gian den vang con lai
     }
 }
 
