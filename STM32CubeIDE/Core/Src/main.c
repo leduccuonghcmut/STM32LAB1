@@ -91,35 +91,36 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  	int hour = 0;
-	int minute = 0;
-	int second = 0;
-	int countSecond = 0;
-	int countMinute = 0;
+  	int hour = 4;
+	int minute = 59;
+	int second = 30;
   while (1)
   {
     /* USER CODE END WHILE */
+	  	  	  	clearAllClock();
 	  	  	  	setNumberOnClock(hour);
-	    		setNumberOnClock(minute);
-	    		setNumberOnClock(second);
+	    		setNumberOnClock(minute/5);
+	    		setNumberOnClock(second/5);
 	    		HAL_Delay(250);
-	    		clearNumberOnClock(hour);
-	    		clearNumberOnClock(minute);
-	    		clearNumberOnClock(second);
-	    		countSecond++;
-	    		if (countSecond >= 1){
-	    			second++;
-	    			countSecond = 0;
-	    		}
-	    		if (second >= 12){
+//	    		clearNumberOnClock(hour);
+//	    		clearNumberOnClock(minute);
+//	    		clearNumberOnClock(second);
+	    		//countSecond++;
+//	    		if (countSecond >= 5){
+//	    			second++;
+//	    			//countSecond = 0;
+//	    		}
+	    		second++;
+	    		if (second >= 60){
 	    			second = 0;
-	    			countMinute++;
-	    		}
-	    		if (countMinute >= 1){
 	    			minute++;
-	    			countMinute = 0;
+	    			//countMinute++;
 	    		}
-	    		if (minute >= 12){
+//	    		if (countMinute >= 5){
+//	    			minute++;
+//	    			countMinute = 0;
+//	    		}
+	    		if (minute >= 60){
 	    			minute = 0;
 	    			hour++;
 	    		}
