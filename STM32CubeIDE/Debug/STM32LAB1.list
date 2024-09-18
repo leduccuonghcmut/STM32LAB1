@@ -329,8 +329,8 @@ int main(void)
 	int minute = 59;
  80002ea:	233b      	movs	r3, #59	; 0x3b
  80002ec:	60bb      	str	r3, [r7, #8]
-	int second = 15;
- 80002ee:	230f      	movs	r3, #15
+	int second = 20;
+ 80002ee:	2314      	movs	r3, #20
  80002f0:	607b      	str	r3, [r7, #4]
   while (1)
   {

@@ -93,7 +93,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   	int hour = 3;
 	int minute = 59;
-	int second = 15;
+	int second = 20;
   while (1)
   {
     /* USER CODE END WHILE */
