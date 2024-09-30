@@ -91,9 +91,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  	int hour = 3;
-	int minute = 59;
-	int second = 20;
+  	int hour = 0;
+	int minute = 0;
+	int second = 0;
   while (1)
   {
     /* USER CODE END WHILE */
@@ -101,7 +101,7 @@ int main(void)
 	  	  	  	setNumberOnClock(hour);
 	    		setNumberOnClock(minute/5);
 	    		setNumberOnClock(second/5);
-	    		HAL_Delay(250);
+	    		HAL_Delay(1000);
 	    		second++;
 	    		if (second >= 60){
 	    			second = 0;
